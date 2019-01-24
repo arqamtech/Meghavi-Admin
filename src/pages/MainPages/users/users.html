@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Users</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button round float-md-right (click)="addUser()">
+    <ion-icon padding-right name="md-add"></ion-icon>
+    Add User
+  </button>
+
+
+  <ion-grid>
+    <ion-card class="roundCard">
+
+      <ion-row class="tableTop" padding>
+        <ion-col col-4>
+          <h2>Name</h2>
+        </ion-col>
+        <ion-col col-4>
+          <h2>Email</h2>
+        </ion-col>
+        <ion-col col-4>
+          <h2>Phone</h2>
+        </ion-col>
+      </ion-row>
+
+      <ion-card-content>
+        <ion-row padding *ngFor="let u of Users">
+          <ion-col col-4>
+            <h2>{{u.Name}}</h2>
+          </ion-col>
+          <ion-col col-4>
+            <h2>{{u.Email}}</h2>
+          </ion-col>
+          <ion-col col-4>
+            <h2>{{u.Phone}}</h2>
+          </ion-col>
+        </ion-row>
+
+      </ion-card-content>
+    </ion-card>
+
+  </ion-grid>
+
+</ion-content>

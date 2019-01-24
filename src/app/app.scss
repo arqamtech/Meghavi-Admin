@@ -1,16 +1,135 @@
-// http://ionicframework.com/docs/theming/
+.bgMain {
+    // background-image: linear-gradient(to right bottom, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+    width: 100wh !important ;
+    height: 100vh !important ;
+    color: #fff !important;
+    background: linear-gradient(-45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB) !important ;
+    background-size: 400% 400% !important ;
+    -webkit-animation: Gradient 7s ease infinite !important ;
+    -moz-animation: Gradient 7s ease infinite !important ;
+    animation: Gradient 7s ease infinite !important ;
+}
+h2{
+  font-weight: 600 !important;
+}
+.content{
+  background: map-get($colors,light);
+}
 
+.menuContent{
+  ::-webkit-scrollbar {
+    width: 0px !important;
+  }
+  background: map-get($colors,light);
+  border: 1px solid map-get($colors,light);
+}
+.menuLogo{
+  height: 50px;
+}
+ion-menu .activeHighlight {
+  background-color: map-get($colors,primary);
+  color: white !important;
+}
+.menuItems{
+  background: map-get($colors,light);
+  color: map-get($colors,dark);
+}
+.menuItems:hover{
+  background: map-get($colors,primary);
+  opacity: 0.8;
+  color: white;
+}
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+.roundCard{
+  border-radius: 10px;
+  background: #fff;
+  margin: auto;
+}
+
+ion-input{
+  padding-left: 5%;
+  font-size: 24px;
+  font-weight: 200;
+}
+.tableTop{
+  background: map-get($colors,primary);
+  color:  map-get($colors,dark);
+}
+// Animations
+
+// Flipping 
+  @-webkit-keyframes flipinx {
+    0%{
+      opacity: 0;
+      -webkit-transform: perspective(400px) rotateX(0deg);
+      transform: perspective(400px) rotateX(90deg);
+    }
+    40%{
+      -webkit-transform: perspective(400px) rotateX(0deg);
+      transform: perspective(400px) rotateX(-10deg);
+    }
+    70%{
+      -webkit-transform: perspective(400px) rotateX(0deg);
+      transform: perspective(400px) rotateX(10deg);
+    }
+    100%{
+      opacity: 1;
+      -webkit-transform: perspective(400px) rotateX(0deg);
+      transform: perspective(400px) rotateX(0deg);
+    }
+  }
+  
+  @keyframes flipinx {
+    0%{
+      opacity: 0;
+      transform: perspective(400px) rotateX(90deg);
+    }
+    40%{
+      transform: perspective(400px) rotateX(-10deg);
+    }
+    70%{
+      transform: perspective(400px) rotateX(10deg);
+    }
+    100%{
+      opacity: 1;
+      transform: perspective(400px) rotateX(0deg);
+    }
+  }
+
+// Background Animation
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+
+}
