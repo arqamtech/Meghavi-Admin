@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, MenuController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, LoadingController, AlertController, ToastController } from 'ionic-angular';
 import { AddUsersPage } from '../../Users/add-users/add-users';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { EditUsersPage } from '../../Users/edit-users/edit-users';
+import * as firebase from 'firebase';
+
 
 @IonicPage()
 @Component({
@@ -16,9 +19,10 @@ export class UsersPage {
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
+    public toastCtrl: ToastController,
+    public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
     public db: AngularFireDatabase,
-    public navParams: NavParams
   ) {
     this.menuCtrl.enable(true);
     this.getUsers();
@@ -26,10 +30,10 @@ export class UsersPage {
 
   getUsers() {
 
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Logging In...'
-    // });
-    // loading.present();
+    let loading = this.loadingCtrl.create({
+      content: 'Logging In...'
+    });
+    loading.present();
 
 
     this.db.list(`Users`).snapshotChanges().subscribe(snap => {
@@ -38,13 +42,61 @@ export class UsersPage {
         let temp: any = snip.payload.val();
         temp.key = snip.key;
         console.log(temp);
-        
+
         this.Users.push(temp);
       })
-      // loading.dismiss();
+      loading.dismiss();
     })
   }
 
+
+
+  delConfirmUser(u) {
+    let confirm = this.alertCtrl.create({
+      title: 'Are you sure you want to Delete User ?',
+      message: 'This data cannot be recovered again.',
+      buttons: [
+        {
+          text: 'No, Its a mistake',
+          handler: () => {
+
+          }
+        },
+        {
+          text: "Yes, I'm sure",
+          handler: () => {
+            this.delUser(u);
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+  delUser(u) {
+    let loading = this.loadingCtrl.create({
+      content: 'Logging In...'
+    });
+    loading.present();
+
+    firebase.database().ref("Users").child(u.key).remove().then(() => {
+      loading.dismiss();
+      this.presentToast(u.Name + " " + "deleted");
+    })
+  }
+
+
+
+  editUser(u) { this.navCtrl.push(EditUsersPage, { user: u }); }
   addUser() { this.navCtrl.push(AddUsersPage); }
 
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 4000,
+      position: "bottom",
+      showCloseButton: false,
+    });
+    toast.present();
+  }
 }

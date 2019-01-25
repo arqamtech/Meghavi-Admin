@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, MenuController, ToastController, LoadingController } from 'ionic-angular';
+import * as firebase from 'firebase';
+import { UsersPage } from '../../MainPages/users/users';
 
-/**
- * Generated class for the EditUsersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +11,66 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class EditUsersPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+  userLabel = "User's";
+
+  user = this.navParams.get("user");
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public menuCtrl: MenuController,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController,
+  ) {
+    console.log(this.user);
+    
+    this.menuCtrl.enable(true);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EditUsersPage');
+  checkData() {
+    if (this.user.Name) {
+      if (this.user.Email) {
+        if (this.user.Phone) {
+          if (this.user.Phone.length == 10) {
+            this.updateUser();
+          } else { this.presentToast("Enter a valid Phonenumber") }
+        } else { this.presentToast("Enter" + this.userLabel + "Phone number") }
+      } else { this.presentToast("Enter" + this.userLabel + "Email") }
+    } else { this.presentToast("Enter" + this.userLabel + "Name") }
   }
 
+
+
+
+  updateUser() {
+    let loading = this.loadingCtrl.create({
+      content: 'Updating User...'
+    });
+    loading.present();
+
+    let ke = this.user.key;
+    delete this.user.key;
+
+    firebase.database().ref("Users").child(ke).set(this.user).then(() => {
+      this.navCtrl.pop().then(() => {
+        this.presentToast(this.userLabel + " " + "Updated")
+        loading.dismiss();
+
+      });
+
+    })
+
+  }
+
+
+  presentToast(msg) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 4000,
+      position: "bottom",
+      showCloseButton: false,
+    });
+    toast.present();
+  }
 }

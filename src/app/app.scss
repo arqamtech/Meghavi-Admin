@@ -55,8 +55,20 @@ ion-input{
   background: map-get($colors,primary);
   color:  map-get($colors,dark);
 }
-// Animations
 
+	.strip ion-row:nth-child(even){
+    background: map-get($colors,light);
+	}
+.curs{
+  cursor: pointer;
+}
+
+
+// Animations
+.flpAnim{
+  -webkit-animation: flipinx 1s ease-out 0s 1 normal both;
+  animation: flipinx 1s ease-out 0s 1 normal both;
+}
 // Flipping 
   @-webkit-keyframes flipinx {
     0%{

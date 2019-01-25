@@ -9,7 +9,6 @@ import { UsersPage } from '../pages/MainPages/users/users';
 import { ProfilePage } from '../pages/Profile/profile/profile';
 import { LoginPage } from '../pages/Auth/login/login';
 import * as firebase from 'firebase';
-import { ChangePassPage } from '../pages/Auth/change-pass/change-pass';
 
 
 
@@ -52,7 +51,7 @@ export class MyApp {
             if (itemSnap.exists()) {
               var welMsg = "Welcome" + " " + itemSnap.val().Name;
               // Managing Root Page
-              this.rootPage = UsersPage;
+              this.rootPage = DashboardPage;
 
 
               this.presentToast(welMsg);

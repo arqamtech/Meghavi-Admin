@@ -94,7 +94,7 @@ export class ChangePassPage {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 4000,
-      position: "top",
+      position: "bottom",
       showCloseButton: false,
     });
     toast.present();

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, MenuController, LoadingController, ToastController } from 'ionic-angular';
 import * as firebase from 'firebase';
 import { DashboardPage } from '../../MainPages/dashboard/dashboard';
+import moment from 'moment';
 
 
 @IonicPage()
@@ -44,15 +45,17 @@ export class LoginPage {
     });
     loading.present();
 
-    firebase.auth().signInWithEmailAndPassword(this.mail, this.pass).then(() => {
-      this.navCtrl.setRoot(DashboardPage);
-      loading.dismiss();
-    }).catch((e) => {
+    firebase.auth().signInWithEmailAndPassword(this.mail, this.pass).catch((e) => {
       var err = e.message;
       this.presentToast(err);
       loading.dismiss();
-    })
+    }).then(() => {
+      firebase.database().ref("Admin Data/Admins").child(firebase.auth().currentUser.uid).child("Last Login").set(moment().format()).then(() => {
+        this.navCtrl.setRoot(DashboardPage);
+        loading.dismiss();
+      })
 
+    })
   }
 
   notAdmin() {
@@ -67,7 +70,7 @@ export class LoginPage {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 4000,
-      position: "top",
+      position: "bottom",
       showCloseButton: false,
     });
     toast.present();
