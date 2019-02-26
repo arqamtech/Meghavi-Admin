@@ -36,7 +36,7 @@ export class UsersPage {
     loading.present();
 
 
-    this.db.list(`Users`).snapshotChanges().subscribe(snap => {
+    this.db.list(`User Data/Users`).snapshotChanges().subscribe(snap => {
       this.Users = [];
       snap.forEach(snip => {
         let temp: any = snip.payload.val();

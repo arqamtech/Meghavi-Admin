@@ -40,7 +40,7 @@ export class DashboardPage {
       content: 'Loading...'
     });
     loading.present();
-    this.db.list(`Users`).snapshotChanges().subscribe(snap => {
+    this.db.list(`User Data/Users`).snapshotChanges().subscribe(snap => {
       this.users = snap.length;
       loading.dismiss();
     })
