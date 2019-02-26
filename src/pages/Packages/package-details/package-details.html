@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Package Details</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="mainCol" push-md-4 col-md-4 col-12>
+        <ion-card class="flpAnim">
+          <ion-row>
+            <ion-col col-12 col-md-8 push-md-2>
+              <ion-card-content>
+                <ion-card-title>{{package.Name}}</ion-card-title>
+
+                <ion-item>
+                  <p ion-text item-start color="primary">Price</p>
+                  <p ion-text item-end>Rs. {{package.Price}}</p>
+                </ion-item>
+
+                <ion-item>
+                  <p ion-text item-start color="primary">Description</p>
+                  <p ion-text item-end>{{package.Description}}</p>
+                </ion-item>
+
+                <ion-item>
+                  <p ion-text item-start color="primary">No of Bookings</p>
+                  <p ion-text item-end>{{package.Bookings}}</p>
+                </ion-item>
+
+
+              </ion-card-content>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+</ion-content>

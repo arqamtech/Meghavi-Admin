@@ -9,6 +9,7 @@ import { UsersPage } from '../pages/MainPages/users/users';
 import { ProfilePage } from '../pages/Profile/profile/profile';
 import { LoginPage } from '../pages/Auth/login/login';
 import * as firebase from 'firebase';
+import { PackagesPage } from '../pages/MainPages/packages/packages';
 
 
 
@@ -30,17 +31,19 @@ export class MyApp {
     public platform: Platform,
     public statusBar: StatusBar,
     public toastCtrl: ToastController,
-    public alertCtrl : AlertController,
+    public alertCtrl: AlertController,
     public splashScreen: SplashScreen
   ) {
     this.initializeApp();
     this.pages = [
       { title: 'DashBoard', component: DashboardPage, icon: "ios-analytics" },
+      { title: 'Packages', component: PackagesPage, icon: "ios-cube" },
       { title: 'Users', component: UsersPage, icon: "ios-people" },
-      { title: 'Add Admin', component: AddAdminPage, icon: "ios-person" },
-      { title: 'Profile', component: ProfilePage, icon: "ios-people" },
+
+      // { title: 'Add Admin', component: AddAdminPage, icon: "ios-person" },
+      // { title: 'Profile', component: ProfilePage, icon: "ios-people" },
     ];
-    this.activePage = this.pages[0];
+    this.activePage = this.pages[1];
   }
 
   initializeApp() {
@@ -51,7 +54,7 @@ export class MyApp {
             if (itemSnap.exists()) {
               var welMsg = "Welcome" + " " + itemSnap.val().Name;
               // Managing Root Page
-              this.rootPage = DashboardPage;
+              this.rootPage = PackagesPage;
 
 
               this.presentToast(welMsg);

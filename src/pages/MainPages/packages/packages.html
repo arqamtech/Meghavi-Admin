@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Packages</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button round float-right (click)="addPackage()">
+    <ion-icon padding-right name="md-add"></ion-icon>
+    Add Package
+  </button>
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-3 *ngFor="let p of packages">
+        <ion-card>
+          <ion-card-content>
+            <ion-card-title>{{p.Name}}</ion-card-title>
+            <ion-item>
+              <p ion-text item-start color="primary">Price</p>
+              <p ion-text item-end >Rs. {{p.Price}}</p>
+            </ion-item>
+
+
+            <ion-item>
+              <p ion-text item-start color="primary">Description</p>
+              <p ion-text item-end >{{p.Description}}</p>
+            </ion-item>
+
+            <button ion-button float-right clear (click)="details(p)">Details</button>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

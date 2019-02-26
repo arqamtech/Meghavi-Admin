@@ -18,6 +18,10 @@ import { ProfilePage } from '../pages/Profile/profile/profile';
 import { EditProfilePage } from '../pages/Profile/edit-profile/edit-profile';
 import { AddAdminPage } from '../pages/MainPages/add-admin/add-admin';
 import { ChangePassPage } from '../pages/Auth/change-pass/change-pass';
+import { PackagesPage } from '../pages/MainPages/packages/packages';
+import { AddPackagePage } from '../pages/Packages/add-package/add-package';
+import { EditPackagePage } from '../pages/Packages/edit-package/edit-package';
+import { PackageDetailsPage } from '../pages/Packages/package-details/package-details';
 
 
 firebase.initializeApp(firebaseCred);
@@ -35,6 +39,11 @@ firebase.initializeApp(firebaseCred);
     EditProfilePage,
     AddAdminPage,
     ChangePassPage,
+    PackagesPage,
+    AddPackagePage,
+    EditPackagePage,
+    PackageDetailsPage,
+
   ],
   imports: [
     BrowserModule,
@@ -55,6 +64,10 @@ firebase.initializeApp(firebaseCred);
     EditProfilePage,
     AddAdminPage,
     ChangePassPage,
+    PackagesPage,
+    AddPackagePage,
+    EditPackagePage,
+    PackageDetailsPage,
   ],
   providers: [
     StatusBar,
