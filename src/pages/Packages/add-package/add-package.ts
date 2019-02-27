@@ -13,6 +13,7 @@ export class AddPackagePage {
 
   name: string;
   price: string;
+  hrs: string;
   desc: string;
 
   constructor(
@@ -30,9 +31,11 @@ export class AddPackagePage {
   checkData() {
     if (this.name) {
       if (this.price) {
-        if (this.desc) {
-          this.addUser();
-        } else { this.presentToast("Enter a description for the package") }
+        if (this.hrs) {
+          if (this.desc) {
+            this.addUser();
+          } else { this.presentToast("Enter a description for the package") }
+        } else { this.presentToast("Enter number of hours") }
       } else { this.presentToast("Enter the package's price") }
     } else { this.presentToast("Enter a name for Package") }
   }
@@ -48,6 +51,7 @@ export class AddPackagePage {
     firebase.database().ref("Packages").push({
       Name: this.name,
       Price: this.price,
+      Hours: this.hrs,
       Description: this.desc,
       TimeStamp: moment().format()
     }).then(() => {

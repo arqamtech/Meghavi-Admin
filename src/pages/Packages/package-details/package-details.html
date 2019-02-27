@@ -30,12 +30,18 @@
                 </ion-item>
 
                 <ion-item>
+                  <p ion-text item-start color="primary">Hours</p>
+                  <p ion-text item-end>{{package.Hours}}</p>
+                </ion-item>
+
+                <ion-item>
                   <p ion-text item-start color="primary">No of Bookings</p>
                   <p ion-text item-end>{{package.Bookings}}</p>
                 </ion-item>
 
 
               </ion-card-content>
+              <button ion-button clear color="danger" (click)="delConfirm()"> Delete Package</button>
             </ion-col>
           </ion-row>
         </ion-card>
